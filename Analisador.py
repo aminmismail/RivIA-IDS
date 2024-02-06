@@ -24,7 +24,9 @@ if features.shape[0] == 0:
     quit()
 
 # Conexão do banco de dados
-uri = "mongodb+srv://aminismail:ESGRIMa123@ids.mwth7cq.mongodb.net/?retryWrites=true&w=majority"
+user = "USUARIO"
+password = "SENHA"
+uri = f"mongodb+srv://{user}:{password}@ids.mwth7cq.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["IDS"]
 collection = db[arq_pcap]
@@ -85,12 +87,13 @@ predictions = rf.predict(features1)
 
 # Gravando os resultados no MongoDB
 
-fuso = timezone('America/Sao_Paulo')
+#fuso = timezone('America/Sao_Paulo')
 length = len(predictions)
 for i in range(length):
-	if predictions[i] == 0:
+	if predictions[i] != 0:
 	    date = datetime.now()
-	    timestamp = date.astimezone(fuso).strftime('%d/%m/%Y %T')
+	    #timestamp = date.astimezone(fuso).strftime('%d/%m/%Y %T')
+	    timestamp = date.strftime('%d/%m/%Y %T')
 	    doc = {
 		"id_classe": int(predictions[i]),
 		"nome_classe": classes[predictions[i]],
