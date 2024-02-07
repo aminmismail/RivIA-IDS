@@ -12,6 +12,10 @@ A maneira que o módulo funciona para capturar os pacotes é utilizando a ferram
 Após as análises e classificações feitas, o módulo é capaz de armazenar todas ameaças detectadas no banco de dados MongoDB (Cloud), guardando as seguintes informações: <br>
 -> ID da ameaça <br>
 -> Classificação da ameaça <br>
+-> IP de origem <br>
+-> Porta de origem <b>
+-> Ip de destino <br>
+-> Porta de destino <br>
 -> Timestamp do fluxo (data/horário que o pacote foi capturado) <br>
 -> Timestamp da análise (data/horário que o módulo fez a análise) <br> 
 
