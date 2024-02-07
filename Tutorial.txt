@@ -2,6 +2,8 @@ Primeiramente, instale as bibliotecas necessárias, utilizando o comando: pip in
 Em seguida, instale a biblioteca libpcap-dev com o comando: sudo apt install libpcap-dev
 Lembrando que a versão utilizada do python é a 3.10
 
+Antes de iniciar o programa, é necessário configurar o Usuário e a Senha do Database do bando de dados MongoDB. Isso é possível ser feito através da edição do arquivo Analisador.py.
+
 Execute o programa principal (menu) com o comando: ./modulo.sh
 Em seguida, escolha a opcao desejada, sendo 1 para capturar tráfego via interface da rede, ou 2 para analisar um arquivo PCAP.
 
