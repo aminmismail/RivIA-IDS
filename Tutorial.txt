@@ -1,6 +1,9 @@
 Primeiramente, instale as bibliotecas necessárias, utilizando o comando: pip install -r requirements.txt
 Em seguida, instale a biblioteca libpcap-dev com o comando: sudo apt install libpcap-dev
-Lembrando que a versão utilizada do python é a 3.10
+
+Os testes utilizando o módulo foram feitos utilizando:
+- Openjdk 11.0.21 2023-10-17
+- Python 3.10
 
 Antes de iniciar o programa, é necessário configurar o Usuário e a Senha do Database do bando de dados MongoDB. Isso é possível ser feito através da edição do arquivo Analisador.py.
 
