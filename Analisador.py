@@ -42,9 +42,19 @@ collection = db[arq_pcap]
 
 classes = ("Benigno", "DoS", "PortScan", "DDoS", "FTP-Brute", "SSH-Brute", "Web Attack", "BotNet")
 
+#Corrigindo linha repetida do cabecalho
+for i in range(len(features["Flow ID"])):
+    if features.loc[i, "Flow ID"] == "Flow ID":
+    	features.drop(i,inplace=True)
+features.reset_index(inplace=True, drop=True)
+
 # Salvando os dados de timestamp do fluxo
 
 time = features['Timestamp']
+src_ip = features['Src IP']
+src_prt = features['Src Port']
+dst_ip = features['Dst IP']
+dst_prt = features['Dst Port']
 
 # Selecaionando os atributos para analise
 
@@ -62,10 +72,6 @@ features = features[['Bwd Packet Length Min', 'Subflow Fwd Bytes', 'Total Length
      'Average Packet Size']]
 
 # Corrigindo dados errados ou faltantes
-
-for i in range(len(features)):
-    if features.loc[i, "Bwd Packet Length Min"] == "Bwd Packet Length Min":
-    	features.drop(i,inplace=True)
     
 features[features == np.inf] = np.nan
 if features.isnull().values.any() == "True":
@@ -87,16 +93,19 @@ predictions = rf.predict(features1)
 
 # Gravando os resultados no MongoDB
 
-#fuso = timezone('America/Sao_Paulo')
+fuso = timezone('America/Sao_Paulo')
 length = len(predictions)
 for i in range(length):
-	if predictions[i] != 0:
+	if predictions[i] != 3:
 	    date = datetime.now()
-	    #timestamp = date.astimezone(fuso).strftime('%d/%m/%Y %T')
-	    timestamp = date.strftime('%d/%m/%Y %T')
+	    timestamp = date.astimezone(fuso).strftime('%d/%m/%Y %T')
 	    doc = {
 		"id_classe": int(predictions[i]),
 		"nome_classe": classes[predictions[i]],
+		"ip_origem": src_ip[i],
+		"porta_origem": src_prt[i],
+		"ip_destino": dst_ip[i],
+		"porta_destino": dst_prt[i],
 		"timestamp_fluxo": time[i],
 		"timestamp_analise": timestamp,
 		"arquivo_referencia": arq_pcap
