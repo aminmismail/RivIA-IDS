@@ -46,7 +46,7 @@ options="-n -nn -N -s 0"
 #   $ sudo service apparmor restart
 #
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # On the same directory.
-post_rotate_command="${script_dir}"/convert_pcap_csv_v2.sh
+post_rotate_command="${script_dir}"/convert_pcap_csv.sh
 
 sudo tcpdump ${options} -z "${post_rotate_command}" -i ${interface} -G ${rotate_interval} -w "${output_file_format}"
 
