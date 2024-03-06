@@ -13,7 +13,7 @@ Após as análises e classificações feitas, o módulo é capaz de armazenar to
 -> ID da ameaça <br>
 -> Classificação da ameaça <br>
 -> IP de origem <br>
--> Porta de origem <b>
+-> Porta de origem <br>
 -> Ip de destino <br>
 -> Porta de destino <br>
 -> Timestamp do fluxo (data/horário que o pacote foi capturado) <br>
