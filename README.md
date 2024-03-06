@@ -6,8 +6,8 @@ Desenvolvimento de um módulo de detecção de ataques (IDS) utilizando Machine 
 A maneira que o módulo funciona para capturar os pacotes é utilizando a ferramenta TCPDump, passando tais PCAPs pela ferramenta CICFlowMeter e os transformnado em arquivos 'comma separated values' (.csv) que serão usados como entrada de dados para o módulo realizar a análise.
 
 É possível realizar análise de fluxo de rede de 2 maneiras: <br>
-1 - Arquivo PCAP existente; <br>
-2 - Análise do tráfego de rede em tempo real. <br>
+1 - Análise do tráfego de rede em tempo real; <br>
+2 - Arquivo PCAP existente; <br>
 
 Após as análises e classificações feitas, o módulo é capaz de armazenar todas ameaças detectadas no banco de dados MongoDB (Cloud), guardando as seguintes informações: <br>
 -> ID da ameaça <br>
