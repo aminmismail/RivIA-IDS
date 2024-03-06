@@ -16,6 +16,7 @@ Tabela de Conteúdos
   * [Via PCAP](#via-pcap)
 * [Armazenamento das detecções](#armazenamento-das-detecções)
 * [Corrigindo Erros](#corrigindo-erros)
+  * [Erro: _Permission Denied_](#) 
 * [Créditos](#créditos)
 * [Observações](#observações)
 
@@ -52,7 +53,7 @@ Na detecção via interface de rede, o módulo irá capturar todo o tráfego da 
 
 Para selecionar este modo, basta escolher a opção 1 e pressionar **Enter**. Em seguida, basta fornecer a interface de rede que será monitorada. Exemplo: `eth0`
 
-### Via Pcap
+### Via PCAP
 
 No modo PCAP, o módulo realiza as detecções com base em um arquivo PCAP fornecido pelo usuário.
 
