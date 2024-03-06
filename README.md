@@ -16,9 +16,11 @@ Tabela de Conteúdos
   * [Via PCAP](#via-pcap)
 * [Armazenamento das detecções](#armazenamento-das-detecções)
 * [Corrigindo Erros](#corrigindo-erros)
-  * [Erro: _Permission Denied_](#) 
+  * [Erro: _Permission Denied_](#erro-permission-denied)
+  * [Erro: _java.lang.UnsatisfiedLinkError_](#erro-javalangunsatisfiedlinkerror)
 * [Créditos](#créditos)
 * [Observações](#observações)
+
 
 
 Descrição
