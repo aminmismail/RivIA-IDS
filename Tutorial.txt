@@ -1,7 +1,6 @@
 Primeiramente, instale as bibliotecas necessárias, utilizando o comando: pip install -r requirements.txt
 Em seguida, instale a biblioteca libpcap-dev com o comando: sudo apt install libpcap-dev
 
-![Build](https://img.shields.io/badge/Built%20with-Python%203.10-Blue)
 Os testes utilizando o módulo foram feitos utilizando:
 - Openjdk 11.0.21 2023-10-17
 - Python 3.10
