@@ -1,4 +1,64 @@
-# Machine_Learning-IDS
+# RivIA - IDS baseado em IA
+
+![Build](https://img.shields.io/badge/Feito%20com-Python%203.10-green)
+![Build](https://img.shields.io/badge/Java%2011-blue)
+![Build](https://img.shields.io/badge/Bash-red)
+
+> Sistema de Detecção de Intrusão baseado em Machine Learning
+
+Tabela de Conteúdos
+------------
+* [Descrição](#descrição)
+* [Instalação](#instalação)
+* [Como usar](#como-usar)
+  * [Via PCAP](#via-pcap)
+  * [Via Interface de Rede](#via-interface-de-rede)
+	
+
+
+Descrição
+------------
+
+O software se trata de um módulo de deteção de ataques ciberneticos em rede que faz uso de inteligência artificial (machine learning) para detecção de atividades maliciosas. Tal software foi desenvolvido majoritariamente nas linguagens Python, Java e Bash, junto com bilibiotecas de codigo aberto.
+
+
+Instalação
+------------
+
+Para 
+
+Como Usar
+------------
+
+### Via Pcap
+
+	
+### Via Interface de Rede:
+
+
+Primeiramente, instale as bibliotecas necessárias, utilizando o comando: pip3 install -r requirements.txt
+Em seguida, instale a biblioteca libpcap-dev com o comando: sudo apt install libpcap-dev
+
+Os testes utilizando o módulo foram feitos utilizando:
+- Openjdk 11.0.21 2023-10-17
+- Python 3.10
+
+Antes de iniciar o programa, é necessário configurar o Usuário e a Senha do Database do bando de dados MongoDB. Isso é possível ser feito através da edição do arquivo Analisador.py.
+
+Execute o programa principal (menu) com o comando: ./modulo.sh
+Em seguida, escolha a opcao desejada, sendo 1 para capturar tráfego via interface da rede, ou 2 para analisar um arquivo PCAP.
+
+Para utilizar o módulo capturando o tráfego de rede, é necessário passar apenas a interface desejada (ex: eth0)
+								
+Para utilizar o módulo para apenas um arquivo pcap, basta passar o arquivo a ser analisado (ex: ./trafego_03.pcap)
+
+Não é recomendado executar o programa com sudo.
+
+OBS: Lembre-se de dar as permissoes corretas para os arquivos caso necessário.
+OBS2: É NECESSÁRIO existir uma pasta nomeada "pcap" no diretorio, assim como outras chamadas "csv", "logs" e "tmp".
+
+--------------------------
+
 Desenvolvimento de um módulo de detecção de ataques (IDS) utilizando Machine Learning, junto com TCPDump e CICFlowMeter.
 
 <hr>
