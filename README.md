@@ -13,27 +13,37 @@ Tabela de Conteúdos
 * [Como usar](#como-usar)
   * [Via PCAP](#via-pcap)
   * [Via Interface de Rede](#via-interface-de-rede)
-	
+* [Corrigindo Erros](#corrigindo-erros)
 
 
 Descrição
 ------------
 
-O software se trata de um módulo de deteção de ataques ciberneticos em rede que faz uso de inteligência artificial (machine learning) para detecção de atividades maliciosas. Tal software foi desenvolvido majoritariamente nas linguagens Python, Java e Bash, junto com bilibiotecas de codigo aberto.
+RivIA se trata de um módulo de deteção de ataques ciberneticos em rede que faz uso de Inteligência Artificial (Machine Learning - ML) para detecção de atividades maliciosas. Este software foi desenvolvido majoritariamente nas linguagens Python, Java e Bash, junto com bilibiotecas de codigo aberto.
 
 
 Instalação
 ------------
 
-Para 
+Para baixar o RivIA, temos 2 opções:
+- Baixar com **git**: `git clone https://github.com/aminmismail/RivIA-IDS.git`
+- Baixar arquivo **ZIP**: [Clique aqui para baixar](https://github.com/aminmismail/RivIA-IDS/archive/master.zip)
+
+Após terminar de baixar, conceda permissão de execução para o arquivo `install.sh` utilizando o comando `chmod +x install.sh` e execute-o (caso necessário, execute-o com **sudo**). O script irá instalar as dependências necessárias para poder executar o software, assim como conceder as permissões necessárias para os arquivos.
 
 Como Usar
 ------------
 
+Para que o software funcione corretamente, recomenda-se utilizar:
+- Python 3.10+
+- JDK 11
+
 ### Via Pcap
+
 
 	
 ### Via Interface de Rede:
+
 
 
 Primeiramente, instale as bibliotecas necessárias, utilizando o comando: pip3 install -r requirements.txt
