@@ -47,6 +47,9 @@ Para que o software funcione corretamente, recomenda-se utilizar:
 - Python 3.10+
 - JDK 11
 
+Para verificar as versões do Python e do JDK, use os comandos: `python3 --version` e `java --verion`
+Certifique-se de utilizar `python3` e não apenas `python` para checar a versão
+
 Para executar o módulo, basta digitar `./modulo.sh` e ele irá permitir a execução em 2 modos: Interface de Rede ou PCAP.
 
 ### Via Interface de Rede:
