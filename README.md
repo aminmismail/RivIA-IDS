@@ -31,7 +31,9 @@ Para baixar o RivIA, temos 2 opções:
 - Baixar com **git**: `git clone https://github.com/aminmismail/RivIA-IDS.git`
 - Baixar arquivo **ZIP**: [Clique aqui para baixar](https://github.com/aminmismail/RivIA-IDS/archive/master.zip)
 
-Após terminar de baixar, conceda permissão de execução para o arquivo `install.sh` utilizando o comando `chmod +x install.sh` e execute-o (caso necessário, execute-o com **sudo**). O script irá instalar as dependências necessárias para poder executar o software, assim como conceder as permissões necessárias para os arquivos.
+Após terminar de baixar, conceda permissão de execução para o arquivo `install.sh` utilizando o comando `chmod +x install.sh` e execute-o (caso necessário, execute-o com **sudo**). 
+
+O script irá instalar as dependências necessárias para poder executar o software, assim como conceder as permissões necessárias para os arquivos.
 
 Como Usar
 ------------
