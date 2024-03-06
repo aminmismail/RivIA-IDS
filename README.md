@@ -1,8 +1,9 @@
 # RivIA - IDS baseado em IA
 
-![Build](https://img.shields.io/badge/Feito%20com-Python%203.10-green)
-![Build](https://img.shields.io/badge/Java%2011-blue)
+![Build](https://img.shields.io/badge/Feito%20com%3A-Python%203.10-green)
+![Build](https://img.shields.io/badge/JDK%2011-blue)
 ![Build](https://img.shields.io/badge/Bash-red)
+![Build](https://img.shields.io/badge/CICFlowMeter-21219c)
 
 > Sistema de Detecção de Intrusão baseado em Machine Learning
 
@@ -13,6 +14,7 @@ Tabela de Conteúdos
 * [Como usar](#como-usar)
   * [Via PCAP](#via-pcap)
   * [Via Interface de Rede](#via-interface-de-rede)
+* [Armazenamento das detecções](#armazenamento-das-detecções)
 * [Corrigindo Erros](#corrigindo-erros)
 
 
@@ -37,60 +39,49 @@ Como Usar
 Para que o software funcione corretamente, recomenda-se utilizar:
 - Python 3.10+
 - JDK 11
+[//]: # (Alterar Usuario e Senha do Database do banco de dados MongoDB no arquivo Analisador.py)
+
+Para executar o módulo, basta digitar `./modulo.sh` e ele irá permitir a execução em 2 modos: Interface de Rede ou PCAP.
+
+### Via Interface de Rede:
+
+Na detecção via interface de rede, o módulo irá capturar todo o tráfego da interface desejada pelo usuário, e em seguida, realizar a detecção com base nos PCAPs gerados a partir da ferramenta **tcpdump** (em intervalos de 1 minuto).
+
+Para selecionar este modo, basta escolher a opção 1 e pressionar **Enter**. Em seguida, basta fornecer a interface de rede que será monitorada. Exemplo: `eth0`
 
 ### Via Pcap
 
+No modo PCAP, o módulo realiza as detecções com base em um arquivo PCAP fornecido pelo usuário.
 
-	
-### Via Interface de Rede:
+Para selecionar este modo, basta escolher a opção 2 e pressionar **Enter**. Em seguida, forneça o caminho relativo do PCAP que se deseja analisar. Exemplo: `./trafego_03.pcap`
 
 
+Armazenamento das detecções
+-----------
 
-Primeiramente, instale as bibliotecas necessárias, utilizando o comando: pip3 install -r requirements.txt
-Em seguida, instale a biblioteca libpcap-dev com o comando: sudo apt install libpcap-dev
+Todas as detecções feitas são armazenadas no banco de dados MongoDB (em Cloud), contendo as seguintes informações:
+- ID da ameaça
+- Classificação da ameaça
+- IP de origem
+- Porta de origem
+- IP de destino
+- Porta de destino
+- Timestamp do fluxo (data/horário que o pacote foi capturado)
+- Timestamp da análise (data/horário que o módulo fez a análise)
 
-Os testes utilizando o módulo foram feitos utilizando:
-- Openjdk 11.0.21 2023-10-17
-- Python 3.10
+Para que o programa consiga conectar corretamente com o MongoDB, deve-se configurar o arquivo <i>*mongo_login.conf*</i>
 
-Antes de iniciar o programa, é necessário configurar o Usuário e a Senha do Database do bando de dados MongoDB. Isso é possível ser feito através da edição do arquivo Analisador.py.
 
-Execute o programa principal (menu) com o comando: ./modulo.sh
-Em seguida, escolha a opcao desejada, sendo 1 para capturar tráfego via interface da rede, ou 2 para analisar um arquivo PCAP.
+NÃO é recomendado executar o programa com sudo por questões de segurança.
 
-Para utilizar o módulo capturando o tráfego de rede, é necessário passar apenas a interface desejada (ex: eth0)
-								
-Para utilizar o módulo para apenas um arquivo pcap, basta passar o arquivo a ser analisado (ex: ./trafego_03.pcap)
+OBS2: É NECESSÁRIO existir 4 pastas nomeada: "pcap", "csv", "logs" e "tmp".
 
-Não é recomendado executar o programa com sudo.
-
-OBS: Lembre-se de dar as permissoes corretas para os arquivos caso necessário.
-OBS2: É NECESSÁRIO existir uma pasta nomeada "pcap" no diretorio, assim como outras chamadas "csv", "logs" e "tmp".
-
---------------------------
-
-Desenvolvimento de um módulo de detecção de ataques (IDS) utilizando Machine Learning, junto com TCPDump e CICFlowMeter.
+-------------
 
 <hr>
 
-A maneira que o módulo funciona para capturar os pacotes é utilizando a ferramenta TCPDump, passando tais PCAPs pela ferramenta CICFlowMeter e os transformnado em arquivos 'comma separated values' (.csv) que serão usados como entrada de dados para o módulo realizar a análise.
+Créditos ao usuário iPAS pela ferramenta desenvolvida utilizando TCPDump e CICFlowMeter, e também ao usuário ahlashkari por disponibilizar a ferramenta CICFlowMeter.
 
-É possível realizar análise de fluxo de rede de 2 maneiras: <br>
-1 - Análise do tráfego de rede em tempo real; <br>
-2 - Arquivo PCAP existente; <br>
+Link do repositório do trabalho do iPAS: https://github.com/iPAS/TCPDUMP_and_CICFlowMeter
 
-Após as análises e classificações feitas, o módulo é capaz de armazenar todas ameaças detectadas no banco de dados MongoDB (Cloud), guardando as seguintes informações: <br>
--> ID da ameaça <br>
--> Classificação da ameaça <br>
--> IP de origem <br>
--> Porta de origem <br>
--> Ip de destino <br>
--> Porta de destino <br>
--> Timestamp do fluxo (data/horário que o pacote foi capturado) <br>
--> Timestamp da análise (data/horário que o módulo fez a análise) <br> 
-
-<hr>
-
-Créditos ao usuário iPAS pela ferramenta desenvolvida utilizando TCPDump e CICFlowMeter, e também ao usuário ahlashkari por disponibilizar a ferramenta CICFlowMeter.<br>
-Link do repositório do trabalho do iPAS: https://github.com/iPAS/TCPDUMP_and_CICFlowMeter <br>
-Link do repositório da ferramenta CICFlowMeter: https://github.com/ahlashkari/CICFlowMeter <br>
+Link do repositório da ferramenta CICFlowMeter: https://github.com/ahlashkari/CICFlowMeter
