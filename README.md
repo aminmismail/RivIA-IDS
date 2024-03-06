@@ -12,10 +12,12 @@ Tabela de Conteúdos
 * [Descrição](#descrição)
 * [Instalação](#instalação)
 * [Como usar](#como-usar)
-  * [Via PCAP](#via-pcap)
   * [Via Interface de Rede](#via-interface-de-rede)
+  * [Via PCAP](#via-pcap)
 * [Armazenamento das detecções](#armazenamento-das-detecções)
 * [Corrigindo Erros](#corrigindo-erros)
+* [Créditos](#créditos)
+* [Observações](#observações)
 
 
 Descrição
@@ -41,7 +43,6 @@ Como Usar
 Para que o software funcione corretamente, recomenda-se utilizar:
 - Python 3.10+
 - JDK 11
-[//]: # (Alterar Usuario e Senha do Database do banco de dados MongoDB no arquivo Analisador.py)
 
 Para executar o módulo, basta digitar `./modulo.sh` e ele irá permitir a execução em 2 modos: Interface de Rede ou PCAP.
 
@@ -71,19 +72,32 @@ Todas as detecções feitas são armazenadas no banco de dados MongoDB (em Cloud
 - Timestamp do fluxo (data/horário que o pacote foi capturado)
 - Timestamp da análise (data/horário que o módulo fez a análise)
 
-Para que o programa consiga conectar corretamente com o MongoDB, deve-se configurar o arquivo <i>*mongo_login.conf*</i>
+Para que o programa consiga conectar corretamente com o MongoDB, deve-se configurar o arquivo <i>*mongo_login.conf*</i>, alterando o Usuário e a Senha correspondentes às credenciais da Database desejada. (**ATENÇÃO:** O login da database podem ser diferentes do login da plataforma MongoDB.)
 
 
-NÃO é recomendado executar o programa com sudo por questões de segurança.
-
-OBS2: É NECESSÁRIO existir 4 pastas nomeada: "pcap", "csv", "logs" e "tmp".
-
+Corrigindo Erros
 -------------
 
-<hr>
 
-Créditos ao usuário iPAS pela ferramenta desenvolvida utilizando TCPDump e CICFlowMeter, e também ao usuário ahlashkari por disponibilizar a ferramenta CICFlowMeter.
+
+
+Créditos
+-------------
+
+Créditos ao usuário *iPAS* pela ferramenta desenvolvida utilizando TCPDump e CICFlowMeter, e também ao usuário *ahlashkari* por disponibilizar a ferramenta CICFlowMeter.
 
 Link do repositório do trabalho do iPAS: https://github.com/iPAS/TCPDUMP_and_CICFlowMeter
 
 Link do repositório da ferramenta CICFlowMeter: https://github.com/ahlashkari/CICFlowMeter
+
+
+
+Observações
+-------------
+
+- É NECESSÁRIO existir 4 pastas nomeadas: "pcap", "csv", "logs" e "tmp"
+- NÃO é recomendado executar o programa com sudo por questões de segurança
+
+
+
+
