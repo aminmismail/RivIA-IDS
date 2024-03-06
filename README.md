@@ -78,13 +78,52 @@ Para que o programa consiga conectar corretamente com o MongoDB, deve-se configu
 Corrigindo Erros
 -------------
 
+Durante o desenvolvimento do software, foram encontrados alguns erros, demonstrados a seguir.
 
+## Erro: _Permission Denied_
+
+Em alguns casos, quando utilizando algum sistema que tenha o __Apparmor__, é possível que o software não execute corretamente por questões de segurança.
+Para corrigir, adicione a seguinte linha no arquivo `/etc/apparmor.d/usr.sbin.tcpdump`:
+
+```
+/usr/sbin/tcpdump {
+  ...
+  # for -z
+  /**/* ixr,      # <-- me adicione!
+  ...
+}
+```
+
+Caso o arquivo `/etc/apparmor.d/usr.sbin.tcpdump` não exista, então adicione a linha no arquivo `/etc/apparmor.d/usr.bin.tcpdump`
+
+Então, reinicie o serviço: `sudo service apparmor restart`
+
+
+## Erro: _java.lang.UnsatisfiedLinkError_
+
+Este erro ocorre caso a biblioteca *libpcap-dev* não tenha sido instalada corretamente.
+Aparecerá então o seguinte erro:
+
+    Exception in thread "main" java.lang.UnsatisfiedLinkError: com.slytechs.library.NativeLibrary.dlopen(Ljava/lang/String;)J
+            at com.slytechs.library.NativeLibrary.dlopen(Native Method)
+            at com.slytechs.library.NativeLibrary.<init>(Unknown Source)
+            at com.slytechs.library.JNILibrary.<init>(Unknown Source)
+            at com.slytechs.library.JNILibrary.loadLibrary(Unknown Source)
+            at com.slytechs.library.JNILibrary.register(Unknown Source)
+            at com.slytechs.library.JNILibrary.register(Unknown Source)
+            at com.slytechs.library.JNILibrary.register(Unknown Source)
+            at org.jnetpcap.Pcap.<clinit>(Unknown Source)
+            at cic.cs.unb.ca.jnetpcap.PacketReader.config(PacketReader.java:58)
+            at cic.cs.unb.ca.jnetpcap.PacketReader.<init>(PacketReader.java:52)
+            at cic.cs.unb.ca.ifm.CICFlowMeter.main(CICFlowMeter.java:93)
+
+Para corrigir, basta instalar a biblioteca utilizando o comando: `sudo apt install libpcap-dev`
 
 
 Créditos
 -------------
 
-Créditos ao usuário *iPAS* pela ferramenta desenvolvida utilizando TCPDump e CICFlowMeter, e também ao usuário *ahlashkari* por disponibilizar a ferramenta CICFlowMeter.
+Créditos ao usuário *iPAS* pela ferramenta desenvolvida utilizando TCPDump e CICFlowMeter, e também ao usuário *ahlashkari* por disponibilizar a ferramenta CICFlowMeter
 
 Link do repositório do trabalho do iPAS: https://github.com/iPAS/TCPDUMP_and_CICFlowMeter
 
