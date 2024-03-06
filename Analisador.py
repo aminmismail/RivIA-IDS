@@ -8,6 +8,7 @@ import numpy as np
 import pickle
 import sys
 import os
+import re
 from sklearn.ensemble import RandomForestClassifier
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -23,9 +24,16 @@ if features.shape[0] == 0:
     print("--- Nenhum fluxo foi encontrado!\n")
     quit()
 
+
+# Abrir o arquivo e ler o conteúdo
+with open('mongo_login.conf', 'r') as f:
+    config = f.read()
+
+# Encontrar e extrair o valor entre as aspas para usuário e senha
+user = re.search(r'Usuario:"([^"]+)"', config).group(1)
+password = re.search(r'Senha:"([^"]+)"', config).group(1)
+
 # Conexão do banco de dados
-user = "USUARIO"
-password = "SENHA"
 uri = f"mongodb+srv://{user}:{password}@ids.mwth7cq.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi('1'))
 db = client["IDS"]
