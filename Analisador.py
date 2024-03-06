@@ -66,13 +66,6 @@ dst_prt = features['Dst Port']
 
 # Selecaionando os atributos para analise
 
-# mantem apenas essas colunas (cicflow 4.0)
-# features = features[['Bwd Packet Length Min','Subflow Fwd Bytes','Total Length of Fwd Packets','Fwd Packet Length Mean','Bwd Packet Length Std','Flow IAT Min','Fwd IAT Min','Flow IAT Mean','Flow Duration','Flow IAT Std','Active Min','Active Mean','Bwd IAT Mean','Fwd IAT Mean','ACK Flag Count','Fwd PSH Flags','SYN Flag Count','Fwd Packets/s','Init_Win_bytes_backward','Bwd Packets/s','Init_Win_bytes_forward','PSH Flag Count','Average Packet Size']]
-
-# mantem apenas essas colunas (cicflow 3.0)
-# features = features[['Bwd Pkt Len Min','Subflow Fwd Byts','TotLen Fwd Pkts','Fwd Pkt Len Mean','Bwd Pkt Len Std','ACK Flag Cnt','SYN Flag Cnt','Fwd Pkts/s','Init Bwd Win Byts','Bwd Pkts/s','Init Fwd Win Byts','PSH Flag Cnt','Pkt Size Avg','Flow IAT Min','Fwd IAT Min','Flow IAT Mean','Flow Duration','Flow IAT Std','Active Min','Active Mean','Bwd IAT Mean','Fwd IAT Mean','Fwd PSH Flags']]
-
-# cicflow 4.0 (via command-line)
 features = features[['Bwd Packet Length Min', 'Subflow Fwd Bytes', 'Total Length of Fwd Packet', 'Fwd Packet Length Mean',
      'Bwd Packet Length Std', 'Flow IAT Min', 'Fwd IAT Min', 'Flow IAT Mean', 'Flow Duration', 'Flow IAT Std',
      'Active Min', 'Active Mean', 'Bwd IAT Mean', 'Fwd IAT Mean', 'ACK Flag Count', 'Fwd PSH Flags', 'SYN Flag Count',
