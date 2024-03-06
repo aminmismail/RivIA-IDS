@@ -86,7 +86,7 @@ Corrigindo Erros
 
 Durante o desenvolvimento do software, foram encontrados alguns erros, demonstrados a seguir.
 
-## Erro: _Permission Denied_
+### Erro: _Permission Denied_
 
 Em alguns casos, quando utilizando algum sistema que tenha o __Apparmor__, é possível que o software não execute corretamente por questões de segurança.
 Para corrigir, adicione a seguinte linha no arquivo `/etc/apparmor.d/usr.sbin.tcpdump`:
@@ -105,7 +105,7 @@ Caso o arquivo `/etc/apparmor.d/usr.sbin.tcpdump` não exista, então adicione a
 Então, reinicie o serviço: `sudo service apparmor restart`
 
 
-## Erro: _java.lang.UnsatisfiedLinkError_
+### Erro: _java.lang.UnsatisfiedLinkError_
 
 Este erro ocorre caso a biblioteca *libpcap-dev* não tenha sido instalada corretamente.
 Aparecerá então o seguinte erro:
