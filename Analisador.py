@@ -20,10 +20,16 @@ features = pd.read_csv(sys.argv[1], low_memory=False)
 print("+++ CSV carregado!\n")
 arq_pcap = sys.argv[1].split('/')[-1]
 
+#Corrigindo linha repetida do cabecalho
+for i in range(len(features["Flow ID"])):
+    if features.loc[i, "Flow ID"] == "Flow ID":
+    	features.drop(i,inplace=True)
+features.reset_index(inplace=True, drop=True)
+
+
 if features.shape[0] == 0:
     print("--- Nenhum fluxo foi encontrado!\n")
     quit()
-
 
 # Abrir o arquivo e ler o conteúdo
 with open('mongo_login.conf', 'r') as f:
@@ -50,11 +56,6 @@ collection = db[arq_pcap]
 
 classes = ("Benigno", "DoS", "PortScan", "DDoS", "FTP-Brute", "SSH-Brute", "Web Attack", "BotNet")
 
-#Corrigindo linha repetida do cabecalho
-for i in range(len(features["Flow ID"])):
-    if features.loc[i, "Flow ID"] == "Flow ID":
-    	features.drop(i,inplace=True)
-features.reset_index(inplace=True, drop=True)
 
 # Salvando os dados de timestamp do fluxo
 
@@ -97,9 +98,10 @@ predictions = rf.predict(features1)
 fuso = timezone('America/Sao_Paulo')
 length = len(predictions)
 for i in range(length):
-	if predictions[i] != 3:
+	if predictions[i] != 5:
 	    date = datetime.now()
 	    timestamp = date.astimezone(fuso).strftime('%d/%m/%Y %T')
+	    time[i] = datetime.strptime(time[i], "%d/%m/%Y %I:%M:%S %p").strftime('%d/%m/%Y %T')
 	    doc = {
 		"id_classe": int(predictions[i]),
 		"nome_classe": classes[predictions[i]],
