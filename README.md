@@ -29,6 +29,11 @@ Descrição
 RivIA se trata de um módulo de deteção de ataques ciberneticos em rede que faz uso de Inteligência Artificial (Machine Learning - ML) para detecção de atividades maliciosas. Este software foi desenvolvido majoritariamente nas linguagens Python, Java e Bash, junto com bilibiotecas de codigo aberto.
 
 
+Atenção
+----------
+Este software está sendo desenvolvido para sistemas Linux por enquanto. Posteriormente será adaptado ao sistema Windows também.
+
+
 Instalação
 ------------
 
