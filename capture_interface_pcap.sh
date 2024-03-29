@@ -3,6 +3,7 @@
 interface=$1
 output_dir=$2
 user=$3
+modo=$MODO
 rotate_interval=30
 
 [[ "$(grep -c "$interface" /proc/net/dev)" == "0" ]] && echo "A interface nao foi encontrada!" && exit 255
@@ -24,7 +25,6 @@ cleanup() {
 	IFS="$OIFS"
 
         echo "=== Limpando arquivos CSV"
-        #rm -f "$output_dir"/*.pcap
         rm -f csv/*.csv
 
 	echo 
@@ -38,7 +38,7 @@ options="-n -nn -N -s 0"
 
 [[ ! -z "${user}" ]] && options="${options} -Z ${user}"  #$(id -nu 1000)
 
-script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # On the same directory.
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # No mesmo diretorio.
 post_rotate_command="${script_dir}"/convert_pcap_csv.sh
 
 sudo tcpdump ${options} -z "${post_rotate_command}" -i ${interface} -G ${rotate_interval} -w "${output_file_format}"

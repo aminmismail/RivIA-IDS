@@ -1,6 +1,7 @@
 #!/bin/bash
 
 pcap_file="$1"
+modo="${MODO}"
 [[ ! -f "${pcap_file}" ]] && echo "Arquivo PCAP \"${pcap_file}\" nao existe!" && exit 255
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # On the same directory.
@@ -47,8 +48,6 @@ echo "+++ Conversor CICFlowMeter 4.0 PCAP-to-CSV +++"
 echo "    Arquivo de entrada: ${pcap_file}"
 echo "    Diretorio de saida: ${output_dir}"
 
-# CICFlowMeter-3.0/bin/CICFlowMeter
-#cic="${script_dir}"/CICFlowMeters/CICFlowMeter-3.0/bin/CICFlowMeter
 cic="${script_dir}"/CICFlowMeters/CICFlowMeter-4.0/bin/CICFlowMeter
 
 "${cic}" "${pcap_file}" "${output_dir}"
@@ -56,7 +55,7 @@ base_pcap="${pcap_file%.*}"
 base_pcap="${base_pcap##*/}"
 arq="${output_dir}/${base_pcap}_ISCX.csv"
 
-python3 Analisador.py $arq
+python3 Analisador.py $arq $modo
 
 echo "+++ Removendo arquivos restantes"
 

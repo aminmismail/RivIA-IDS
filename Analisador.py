@@ -20,6 +20,14 @@ features = pd.read_csv(sys.argv[1], low_memory=False)
 print("+++ CSV carregado!\n")
 arq_pcap = sys.argv[1].split('/')[-1]
 
+modo_classificacao = 0 #0 = binario | 1 = multi
+
+if sys.argv[2] == '1':
+	modo_classificacao = 1
+	print("-| Multi-Classificacao |-")
+else:
+	print("-| Classificacao Binaria |-")
+
 #Corrigindo linha repetida do cabecalho
 for i in range(len(features["Flow ID"])):
     if features.loc[i, "Flow ID"] == "Flow ID":
@@ -38,23 +46,19 @@ with open('mongo_login.conf', 'r') as f:
 # Encontrar e extrair o valor entre as aspas para usuário e senha
 user = re.search(r'Usuario:"([^"]+)"', config).group(1)
 password = re.search(r'Senha:"([^"]+)"', config).group(1)
+link = re.search(r'Link_Conexao:"([^"]+)"', config).group(1)
+database = re.search(r'Nome_Database:"([^"]+)"', config).group(1)
 
 # Conexão do banco de dados
-uri = f"mongodb+srv://{user}:{password}@ids.mwth7cq.mongodb.net/?retryWrites=true&w=majority"
+uri = f"mongodb+srv://{user}:{password}{link}"
 client = MongoClient(uri, server_api=ServerApi('1'))
-db = client["IDS"]
+db = client[database]
 collection = db[arq_pcap]
 
-# 0-Benigno
-# 1-DoS 
-# 2-PortScan 
-# 3-DDoS 
-# 4-FTP-Brute 
-# 5-SSH-Brute 
-# 6-Web Attack 
-# 7-BotNet
-
-classes = ("Benigno", "DoS", "PortScan", "DDoS", "FTP-Brute", "SSH-Brute", "Web Attack", "BotNet")
+if modo_classificacao == 0: #Classificaçãoo binaria
+	classes = ("Benigno", "Ataque")
+elif modo_classificacao == 1: #Classificação Multipla
+	classes = ("Benigno", "DoS", "PortScan", "DDoS", "FTP-Brute", "SSH-Brute", "Web Attack", "BotNet")
 
 
 # Salvando os dados de timestamp do fluxo
@@ -85,7 +89,10 @@ features1 = np.array(features)
 
 # Carregando o modelo a ser usado
 cwd = os.getcwd()
-rf = pickle.load(open(cwd + "/modeloRF23.sav", 'rb'))
+if modo_classificacao == 0:
+	rf = pickle.load(open(cwd + "/modeloRF_binario.sav", 'rb'))
+if modo_classificacao == 1:
+	rf = pickle.load(open(cwd + "/modeloRF_multi.sav", 'rb'))
 
 # Realizando as predicoes
 
@@ -98,7 +105,7 @@ predictions = rf.predict(features1)
 fuso = timezone('America/Sao_Paulo')
 length = len(predictions)
 for i in range(length):
-	if predictions[i] != 5:
+	if predictions[i] != 0:
 	    date = datetime.now()
 	    timestamp = date.astimezone(fuso).strftime('%d/%m/%Y %T')
 	    time[i] = datetime.strptime(time[i], "%d/%m/%Y %I:%M:%S %p").strftime('%d/%m/%Y %T')
@@ -115,4 +122,4 @@ for i in range(length):
 	    }
 	    collection.insert_one(doc)
 
-print(" === Análise concluída! ===\n")
+print(" === Analise concluida! ===\n")

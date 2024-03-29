@@ -56,18 +56,19 @@ Para verificar as versões do Python e do JDK, use os comandos: `python3 --versi
 Certifique-se de utilizar `python3` e não apenas `python` para checar a versão
 
 Para executar o módulo, basta digitar `./modulo.sh` e ele irá permitir a execução em 2 modos: Interface de Rede ou PCAP.
+O software permite também a escolha entre 2 maneiras de classificação: Binária ou Múltipla.
 
 ### Via Interface de Rede:
 
 Na detecção via interface de rede, o módulo irá capturar todo o tráfego da interface desejada pelo usuário, e em seguida, realizar a detecção com base nos PCAPs gerados a partir da ferramenta **tcpdump** (em intervalos de 1 minuto).
 
-Para selecionar este modo, basta escolher a opção 1 e pressionar **Enter**. Em seguida, basta fornecer a interface de rede que será monitorada. Exemplo: `eth0`
+Para selecionar este modo, basta escolher a opção 1 e pressionar **Enter**. Escolha então o modo de classificação. Em seguida, basta fornecer a interface de rede que será monitorada. Exemplo: `eth0`
 
 ### Via PCAP:
 
 No modo PCAP, o módulo realiza as detecções com base em um arquivo PCAP fornecido pelo usuário.
 
-Para selecionar este modo, basta escolher a opção 2 e pressionar **Enter**. Em seguida, forneça o caminho relativo do PCAP que se deseja analisar. Exemplo: `./trafego_03.pcap`
+Para selecionar este modo, basta escolher a opção 2 e pressionar **Enter**. Escolha então o modo de classificação. Em seguida, forneça o caminho relativo do PCAP que se deseja analisar. Exemplo: `./trafego_03.pcap`
 
 
 Armazenamento das detecções
@@ -83,7 +84,8 @@ Todas as detecções feitas são armazenadas no banco de dados MongoDB (em Cloud
 - Timestamp do fluxo (data/horário que o pacote foi capturado)
 - Timestamp da análise (data/horário que o módulo fez a análise)
 
-Para que o programa consiga conectar corretamente com o MongoDB, deve-se configurar o arquivo <i>*mongo_login.conf*</i>, alterando o Usuário e a Senha correspondentes às credenciais da Database desejada. (**ATENÇÃO:** O login da database podem ser diferentes do login da plataforma MongoDB.)
+Para que o programa consiga conectar corretamente com o MongoDB, deve-se configurar o arquivo <i>*mongo_login.conf*</i>, alterando o Usuário, a Senha, o Link de Conexão da Database e o nome da Database correspondentes às credenciais da Database desejada. (**ATENÇÃO:** O login da database podem ser diferentes do login da plataforma MongoDB).
+Caso necessário, visite o site: <a>https://www.mongodb.com/docs/manual/reference/connection-string/</a> para mais ajuda.
 
 
 Corrigindo Erros
@@ -146,7 +148,7 @@ Observações
 -------------
 
 - É NECESSÁRIO existir 4 pastas nomeadas: "pcap", "csv", "logs" e "tmp"
-- NÃO é recomendado executar o programa com sudo por questões de segurança
+- NÃO é recomendado executar o programa com `sudo`
 
 
 
