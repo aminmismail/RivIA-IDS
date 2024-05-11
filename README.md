@@ -132,6 +132,22 @@ Aparecerá então o seguinte erro:
 
 Para corrigir, basta instalar a biblioteca utilizando o comando: `sudo apt install libpcap-dev`
 
+### Erro nos módulos do Python
+
+Pode ser que aconteça dos módulos do python (como: pandas, sklearn, etc) não serem identificados durante a execução do software. Caso isso aconteça, é recomendado utilizar um ambiente python (*venv*) para executar o software corretamente.
+
+Para isso, instale o módulo *venv* usando o comando: `apt install python3.10-venv` (pode ser necessario mudar a versão do python de 3.10 para sua versão).
+
+Em seguida, dentro da pasta `RivIA-IDS`, execute o comando `python3.10 -m venv venv`, e em seguida `source venv/bin/activate`.
+
+Feito isso, você deverá estar dentro do ambiente. Agora execute o script `./install.sh` para instalar as dependências no ambiente *venv*.
+
+Além disso, execute o comando `which python3` e copie o caminho que será mostrado no terminal.
+
+Em seguida, no arquivo *capture_interface_pcap.sh* troque o comando `python3` pelo caminho copiado.
+
+Se tudo foi feito corretamente, o software deve executar tranquilamente.
+
 
 Créditos
 -------------
