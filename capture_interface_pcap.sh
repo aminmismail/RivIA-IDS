@@ -41,4 +41,4 @@ options="-n -nn -N -s 0"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"  # No mesmo diretorio.
 post_rotate_command="${script_dir}"/convert_pcap_csv.sh
 
-sudo tcpdump ${options} -z "${post_rotate_command}" -i ${interface} -G ${rotate_interval} -w "${output_file_format}"
+sudo -E tcpdump ${options} -z "${post_rotate_command}" -i ${interface} -G ${rotate_interval} -w "${output_file_format}"
