@@ -144,7 +144,7 @@ Feito isso, você deverá estar dentro do ambiente. Agora execute o script `./in
 
 Além disso, execute o comando `which python3` e copie o caminho que será mostrado no terminal.
 
-Em seguida, no arquivo *capture_interface_pcap.sh* troque o comando `python3` pelo caminho copiado.
+Em seguida, no arquivo *convert_pcap_csv.sh* troque o comando `python3` pelo caminho copiado.
 
 Se tudo foi feito corretamente, o software deve executar tranquilamente.
 
