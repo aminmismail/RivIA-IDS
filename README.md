@@ -18,6 +18,7 @@ Tabela de Conteúdos
 * [Corrigindo Erros](#corrigindo-erros)
   * [Erro: _Permission Denied_](#erro-permission-denied)
   * [Erro: _java.lang.UnsatisfiedLinkError_](#erro-javalangunsatisfiedlinkerror)
+  * [Erro nos módulos do Python](#erro-nos-módulos-do-python)
 * [Créditos](#créditos)
 * [Observações](#observações)
 
