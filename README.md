@@ -32,7 +32,7 @@ RivIA se trata de um módulo de deteção de ataques ciberneticos em rede que fa
 
 Atenção
 ----------
-Este software está sendo desenvolvido para sistemas Linux por enquanto. Posteriormente será adaptado ao sistema Windows também.
+Este software está sendo desenvolvido para sistemas Linux por enquanto.
 
 
 Instalação
